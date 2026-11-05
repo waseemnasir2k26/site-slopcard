@@ -1,0 +1,5 @@
+node_modules/
+slopcard-out/
+.impeccable/
+*.log
+.DS_Store

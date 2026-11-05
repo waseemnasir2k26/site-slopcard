@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  color: #1f2a24;
+  background: #fbf8f2;
+}
+p,
+li,
+input,
+textarea,
+button {
+  font-family: "Public Sans", system-ui, sans-serif;
+}
+h1 {
+  font-size: 48px;
+  line-height: 1.1;
+  color: #1f2a24;
+}
+.cta {
+  display: inline-block;
+  background: #c2410c;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 6px;
+}

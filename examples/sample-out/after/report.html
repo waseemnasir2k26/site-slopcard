@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Report Card: examples/good-site/index.html</title>
+<style>:root{--brand:#0f5c55;--g:#15803d}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#f4f2ee;color:#1d1d1b;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.page{max-width:860px;margin:24px auto;background:#fff;border:1px solid #e3dfd7;padding:36px 40px 28px}
+h1,h2,.grade{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+h1{font-size:28px;line-height:1.15;margin:0 0 6px}
+h2{font-size:19px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--brand)}
+.top{display:flex;gap:28px;align-items:center;justify-content:space-between;border-bottom:1px solid #e3dfd7;padding-bottom:22px}
+.meta{color:#55524c;font-size:13px}
+.meta b{color:#1d1d1b}
+.target{word-break:break-all;font-weight:600;color:var(--brand)}
+.grade{flex:none;width:132px;height:132px;border-radius:50%;border:6px solid var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g)}
+.grade .l{font-size:64px;font-weight:700;line-height:1}
+.grade .n{font-size:15px;color:#55524c;font-family:system-ui,sans-serif}
+.bars{display:grid;grid-template-columns:190px 1fr 46px 34px;gap:8px 12px;align-items:center;margin-top:6px}
+.bar{height:12px;background:#eeebe5;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand)}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.gl{font-weight:700;text-align:center}
+ol.fixes{margin:0;padding-left:22px}
+ol.fixes li{margin:0 0 10px}
+ol.fixes .why{color:#55524c;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #eeebe5}
+th{color:#55524c;font-weight:600}
+.sev{font-weight:600;white-space:nowrap}
+.sev.high{color:#b91c1c}.sev.medium{color:#b45309}.sev.low{color:#55524c}
+code{font-size:11.5px;color:#55524c}
+.notes{color:#55524c;font-size:12.5px;padding-left:18px}
+footer{margin-top:26px;padding-top:12px;border-top:1px solid #e3dfd7;color:#6b675f;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--brand)}
+@media (max-width:640px){.page{margin:0;padding:22px 16px;border:0}.top{flex-direction:column-reverse;align-items:flex-start}.bars{grid-template-columns:1fr 1fr 40px 28px}}
+@media print{body{background:#fff}.page{margin:0;border:0;max-width:none;padding:0 4px}h2{break-after:avoid}tr,li{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="top">
+<div>
+<h1>Site Report Card</h1>
+<div class="target">examples/good-site/index.html</div>
+<div class="meta">Prepared for <b>Harbour Lane Plumbing</b></div>
+<div class="meta">2026-11-05 · 0 issue(s) across 53 checks</div>
+</div>
+<div class="grade" role="img" aria-label="Grade A, 100 out of 100"><span class="l">A</span><span class="n">100/100</span></div>
+</section>
+<h2>Scores by area</h2>
+<div class="bars"><div>Design (AI-slop tells) <span class="meta">(30%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>SEO basics <span class="meta">(20%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>AEO / AI answers <span class="meta">(20%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>Security headers <span class="meta">(15%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>Lead capture <span class="meta">(15%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div></div>
+<h2>Fix these first</h2>
+<p>Nothing to fix. Nice work.</p>
+<h2>Every finding</h2>
+<p>No issues found.</p>
+<h2>Notes</h2><ul class="notes"><li>offline file mode: header checks use headers.json when present, otherwise they are marked n/a</li><li>design: partial (impeccable needs a URL; serve the file and scan http://localhost to add its rules)</li></ul>
+<footer><span>Generated with <a href="https://github.com/waseemnasir2k26/site-slopcard">site-slopcard</a> 1.0.0. Passive, read-only checks.</span><span>Only scan sites you own or have permission to audit.</span></footer>
+</main>
+</body>
+</html>

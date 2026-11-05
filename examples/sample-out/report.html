@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Report Card: examples/bad-site/index.html</title>
+<style>:root{--brand:#0f5c55;--g:#b91c1c}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#f4f2ee;color:#1d1d1b;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.page{max-width:860px;margin:24px auto;background:#fff;border:1px solid #e3dfd7;padding:36px 40px 28px}
+h1,h2,.grade{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+h1{font-size:28px;line-height:1.15;margin:0 0 6px}
+h2{font-size:19px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--brand)}
+.top{display:flex;gap:28px;align-items:center;justify-content:space-between;border-bottom:1px solid #e3dfd7;padding-bottom:22px}
+.meta{color:#55524c;font-size:13px}
+.meta b{color:#1d1d1b}
+.target{word-break:break-all;font-weight:600;color:var(--brand)}
+.grade{flex:none;width:132px;height:132px;border-radius:50%;border:6px solid var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g)}
+.grade .l{font-size:64px;font-weight:700;line-height:1}
+.grade .n{font-size:15px;color:#55524c;font-family:system-ui,sans-serif}
+.bars{display:grid;grid-template-columns:190px 1fr 46px 34px;gap:8px 12px;align-items:center;margin-top:6px}
+.bar{height:12px;background:#eeebe5;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand)}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.gl{font-weight:700;text-align:center}
+ol.fixes{margin:0;padding-left:22px}
+ol.fixes li{margin:0 0 10px}
+ol.fixes .why{color:#55524c;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #eeebe5}
+th{color:#55524c;font-weight:600}
+.sev{font-weight:600;white-space:nowrap}
+.sev.high{color:#b91c1c}.sev.medium{color:#b45309}.sev.low{color:#55524c}
+code{font-size:11.5px;color:#55524c}
+.notes{color:#55524c;font-size:12.5px;padding-left:18px}
+footer{margin-top:26px;padding-top:12px;border-top:1px solid #e3dfd7;color:#6b675f;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--brand)}
+@media (max-width:640px){.page{margin:0;padding:22px 16px;border:0}.top{flex-direction:column-reverse;align-items:flex-start}.bars{grid-template-columns:1fr 1fr 40px 28px}}
+@media print{body{background:#fff}.page{margin:0;border:0;max-width:none;padding:0 4px}h2{break-after:avoid}tr,li{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="top">
+<div>
+<h1>Site Report Card</h1>
+<div class="target">examples/bad-site/index.html</div>
+
+<div class="meta">2026-11-05 · 37 issue(s) across 53 checks</div>
+</div>
+<div class="grade" role="img" aria-label="Grade F, 22 out of 100"><span class="l">F</span><span class="n">22/100</span></div>
+</section>
+<h2>Scores by area</h2>
+<div class="bars"><div>Design (AI-slop tells) <span class="meta">(30%)</span></div><div class="bar"><i style="width:0%"></i></div><div class="num">0</div><div class="gl" style="color:#b91c1c">F</div>
+<div>SEO basics <span class="meta">(20%)</span></div><div class="bar"><i style="width:25%"></i></div><div class="num">25</div><div class="gl" style="color:#b91c1c">F</div>
+<div>AEO / AI answers <span class="meta">(20%)</span></div><div class="bar"><i style="width:40%"></i></div><div class="num">40</div><div class="gl" style="color:#b91c1c">F</div>
+<div>Security headers <span class="meta">(15%)</span></div><div class="bar"><i style="width:10%"></i></div><div class="num">10</div><div class="gl" style="color:#b91c1c">F</div>
+<div>Lead capture <span class="meta">(15%)</span></div><div class="bar"><i style="width:50%"></i></div><div class="num">50</div><div class="gl" style="color:#b91c1c">F</div></div>
+<h2>Fix these first</h2>
+<ol class="fixes"><li><b>Rewrite the headline as a concrete outcome for a named customer (&quot;Plumber at your door in 60 minutes&quot;), not &quot;Unlock seamless...&quot;</b><div class="why">Headline copy is free of AI buzzwords · Design (AI-slop tells) · high. Found: Buzzwords in headings: unlock, elevate, seamless, supercharge, effortless, effortlessly</div></li><li><b>Replace every placeholder (lorem ipsum, &quot;Your Company&quot;, sample names) with real copy.</b><div class="why">No template placeholder copy left in · Design (AI-slop tells) · high. Found: Found &quot;Lorem ipsum&quot;</div></li><li><b>Add &lt;meta name=&quot;description&quot;&gt; with a one-sentence promise and a reason to click.</b><div class="why">Meta description present · SEO basics · high. Found: No meta description</div></li><li><b>Pick a typeface with a point of view (a characterful serif or grotesk) and keep Inter/Roboto for UI text only, if at all.</b><div class="why">Typeface is not the default AI pick · Design (AI-slop tells) · medium. Found: Only default fonts declared: inter</div></li><li><b>Replace emoji bullets with plain bullets, numbers or a real icon set used sparingly.</b><div class="why">Lists do not lead with emoji · Design (AI-slop tells) · medium. Found: 4 items start with emoji, e.g. &quot;🚀 Blazing fast — out of the box&quot;</div></li></ol>
+<h2>Every finding</h2>
+<table><thead><tr><th>Area</th><th>Severity</th><th>Check</th><th>Evidence</th></tr></thead><tbody><tr><td>Design (AI-slop tells)</td><td class="sev medium">medium</td><td>Typeface is not the default AI pick<br><code>design.default-font</code></td><td>Only default fonts declared: inter</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev high">high</td><td>No purple/violet &quot;AI gradient&quot;<br><code>design.purple-gradient</code></td><td>gradient(135deg, #7c3aed 0%, #6366f1 50%, #06b6d4 100% ))</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev medium">medium</td><td>Headlines are not gradient-filled text<br><code>design.gradient-text</code></td><td>CSS uses background-clip: text</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev low">low</td><td>No tracked all-caps &quot;eyebrow&quot; labels<br><code>design.tracked-eyebrow</code></td><td>uppercase + letter-spacing 0.2em</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev medium">medium</td><td>Lists do not lead with emoji<br><code>design.emoji-bullets</code></td><td>4 items start with emoji, e.g. &quot;🚀 Blazing fast — out of the box&quot;</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev high">high</td><td>Headline copy is free of AI buzzwords<br><code>design.hero-buzzwords</code></td><td>Buzzwords in headings: unlock, elevate, seamless, supercharge, effortless, effortlessly</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev low">low</td><td>No default glassmorphism blur panels<br><code>design.glassmorphism</code></td><td>CSS uses backdrop-filter: blur</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev high">high</td><td>No template placeholder copy left in<br><code>design.placeholder-copy</code></td><td>Found &quot;Lorem ipsum&quot;</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev low">low</td><td>Em dashes are not overused in copy<br><code>design.em-dash-density</code></td><td>7 em dashes in 82 words</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev medium">medium</td><td>Body copy avoids stock AI phrases<br><code>design.stock-phrases</code></td><td>Stock phrases: in today&#39;s fast-paced, delve, tapestry, look no further</td></tr>
+<tr><td>Design (AI-slop tells)</td><td class="sev low">low</td><td>Accent colour is not the framework default indigo/violet<br><code>design.default-palette</code></td><td>Default palette colour #7c3aed</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Title is 30-65 characters<br><code>seo.title-length</code></td><td>Title is 8 chars: &quot;NovaFlow&quot;</td></tr>
+<tr><td>SEO basics</td><td class="sev high">high</td><td>Meta description present<br><code>seo.meta-description</code></td><td>No meta description</td></tr>
+<tr><td>SEO basics</td><td class="sev low">low</td><td>Meta description is 70-160 characters<br><code>seo.meta-description-length</code></td><td>No meta description to measure</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Exactly one &lt;h1&gt;<br><code>seo.single-h1</code></td><td>2 &lt;h1&gt; elements</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Canonical URL declared<br><code>seo.canonical</code></td><td>No rel=canonical link</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Open Graph title, description and image<br><code>seo.open-graph</code></td><td>Missing og:title, og:description, og:image</td></tr>
+<tr><td>SEO basics</td><td class="sev low">low</td><td>Twitter/X card meta<br><code>seo.twitter-card</code></td><td>No twitter:card meta</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Valid JSON-LD structured data<br><code>seo.structured-data</code></td><td>No JSON-LD structured data</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Images have alt text (90%+)<br><code>seo.img-alt</code></td><td>0/2 images have alt (0%)</td></tr>
+<tr><td>SEO basics</td><td class="sev low">low</td><td>&lt;html lang&gt; set<br><code>seo.html-lang</code></td><td>No lang attribute on &lt;html&gt;</td></tr>
+<tr><td>SEO basics</td><td class="sev medium">medium</td><td>Mobile viewport meta<br><code>seo.viewport</code></td><td>No viewport meta</td></tr>
+<tr><td>SEO basics</td><td class="sev low">low</td><td>sitemap.xml reachable<br><code>seo.sitemap</code></td><td>No sitemap.xml found</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev medium">medium</td><td>/llms.txt published<br><code>aeo.llms-txt</code></td><td>No usable /llms.txt</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev low">low</td><td>robots.txt present<br><code>aeo.robots-txt</code></td><td>No /robots.txt</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev medium">medium</td><td>Answer-ready schema (FAQPage / HowTo / QAPage)<br><code>aeo.faq-schema</code></td><td>No FAQPage/HowTo/QAPage schema</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev medium">medium</td><td>Entity schema (Organization / LocalBusiness / Person)<br><code>aeo.entity-schema</code></td><td>No Organization/LocalBusiness/Person entity</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev low">low</td><td>At least one question-style heading<br><code>aeo.question-headings</code></td><td>No H2/H3 phrased as a question</td></tr>
+<tr><td>AEO / AI answers</td><td class="sev low">low</td><td>Freshness signal (dateModified or &lt;time&gt;)<br><code>aeo.freshness</code></td><td>No dateModified, &lt;time datetime&gt; or article:modified_time</td></tr>
+<tr><td>Security headers</td><td class="sev medium">medium</td><td>No mixed (http://) content<br><code>security.mixed-content</code></td><td>1 http:// resource(s), e.g. http://images.example.com/hero-dashboard.png</td></tr>
+<tr><td>Security headers</td><td class="sev high">high</td><td>No secret-shaped keys in page source<br><code>security.exposed-keys</code></td><td>OpenAI-style secret key: sk-F…(38 chars); Google API key: AIza…(36 chars); Slack token: xoxb…(36 chars)</td></tr>
+<tr><td>Security headers</td><td class="sev low">low</td><td>Public CDN scripts use Subresource Integrity<br><code>security.sri</code></td><td>1 CDN script(s) without integrity, e.g. cdn.jsdelivr.net</td></tr>
+<tr><td>Lead capture</td><td class="sev high">high</td><td>Forms point somewhere real<br><code>leads.form-action</code></td><td>1 form(s) with action=&quot;#&quot;</td></tr>
+<tr><td>Lead capture</td><td class="sev medium">medium</td><td>Form fields are labelled<br><code>leads.input-labels</code></td><td>1/1 fields without a label</td></tr>
+<tr><td>Lead capture</td><td class="sev low">low</td><td>Email fields use type=&quot;email&quot;<br><code>leads.email-type</code></td><td>1 email field(s) not type=&quot;email&quot;</td></tr>
+<tr><td>Lead capture</td><td class="sev medium">medium</td><td>A clear call-to-action exists<br><code>leads.primary-cta</code></td><td>No button or link with an action verb</td></tr>
+<tr><td>Lead capture</td><td class="sev low">low</td><td>Instant channel (phone or WhatsApp)<br><code>leads.instant-channel</code></td><td>No tel: or WhatsApp link</td></tr></tbody></table>
+<h2>Notes</h2><ul class="notes"><li>offline file mode: header checks use headers.json when present, otherwise they are marked n/a</li><li>design: partial (impeccable needs a URL; serve the file and scan http://localhost to add its rules)</li></ul>
+<footer><span>Generated with <a href="https://github.com/waseemnasir2k26/site-slopcard">site-slopcard</a> 1.0.0. Passive, read-only checks.</span><span>Only scan sites you own or have permission to audit.</span></footer>
+</main>
+</body>
+</html>

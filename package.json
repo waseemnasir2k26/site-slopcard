@@ -1,0 +1,48 @@
+{
+  "name": "site-slopcard",
+  "version": "1.0.0",
+  "description": "Give it a URL, get a one-page client-ready Site Report Card (A-F): AI-slop design tells, SEO/AEO basics, security headers and lead-form health.",
+  "type": "module",
+  "bin": {
+    "site-slopcard": "bin/site-slopcard.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "skill/",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "sample": "node scripts/build-samples.js",
+    "start": "node bin/site-slopcard.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "ai-slop",
+    "design-audit",
+    "seo",
+    "aeo",
+    "claude-code",
+    "agent-skills",
+    "web-audit",
+    "agency",
+    "report-card",
+    "security-headers"
+  ],
+  "author": "Waseem Nasir (SkynetLabs) <waseem@skynetjoe.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waseemnasir2k26/site-slopcard.git"
+  },
+  "homepage": "https://github.com/waseemnasir2k26/site-slopcard#readme",
+  "bugs": {
+    "url": "https://github.com/waseemnasir2k26/site-slopcard/issues"
+  }
+}

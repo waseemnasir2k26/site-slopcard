@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before and after: examples/bad-site/index.html -&gt; examples/good-site/index.html</title>
+<style>:root{--brand:#0f5c55}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#f4f2ee;color:#1d1d1b;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.page{max-width:860px;margin:24px auto;background:#fff;border:1px solid #e3dfd7;padding:36px 40px 28px}
+h1,h2,.grade{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+h1{font-size:28px;line-height:1.15;margin:0 0 6px}
+h2{font-size:19px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--brand)}
+.top{display:flex;gap:28px;align-items:center;justify-content:space-between;border-bottom:1px solid #e3dfd7;padding-bottom:22px}
+.meta{color:#55524c;font-size:13px}
+.meta b{color:#1d1d1b}
+.target{word-break:break-all;font-weight:600;color:var(--brand)}
+.grade{flex:none;width:132px;height:132px;border-radius:50%;border:6px solid var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g)}
+.grade .l{font-size:64px;font-weight:700;line-height:1}
+.grade .n{font-size:15px;color:#55524c;font-family:system-ui,sans-serif}
+.bars{display:grid;grid-template-columns:190px 1fr 46px 34px;gap:8px 12px;align-items:center;margin-top:6px}
+.bar{height:12px;background:#eeebe5;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand)}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.gl{font-weight:700;text-align:center}
+ol.fixes{margin:0;padding-left:22px}
+ol.fixes li{margin:0 0 10px}
+ol.fixes .why{color:#55524c;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #eeebe5}
+th{color:#55524c;font-weight:600}
+.sev{font-weight:600;white-space:nowrap}
+.sev.high{color:#b91c1c}.sev.medium{color:#b45309}.sev.low{color:#55524c}
+code{font-size:11.5px;color:#55524c}
+.notes{color:#55524c;font-size:12.5px;padding-left:18px}
+footer{margin-top:26px;padding-top:12px;border-top:1px solid #e3dfd7;color:#6b675f;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--brand)}
+@media (max-width:640px){.page{margin:0;padding:22px 16px;border:0}.top{flex-direction:column-reverse;align-items:flex-start}.bars{grid-template-columns:1fr 1fr 40px 28px}}
+@media print{body{background:#fff}.page{margin:0;border:0;max-width:none;padding:0 4px}h2{break-after:avoid}tr,li{break-inside:avoid}}
+.vs{display:flex;align-items:center;justify-content:center;gap:34px;margin:22px 0 8px}.arrow{font-size:40px;color:var(--brand)}.delta{text-align:center;font-size:18px;font-weight:700;color:var(--brand)}</style>
+</head>
+<body>
+<main class="page">
+<h1>Before and after</h1>
+<div class="target">examples/bad-site/index.html -&gt; examples/good-site/index.html</div>
+<div class="meta">Prepared for <b>Harbour Lane Plumbing</b></div>
+<div class="vs"><div class="grade" style="--g:#b91c1c"><span class="l">F</span><span class="n">22/100</span><span class="n">before</span></div><span class="arrow" aria-hidden="true">&rarr;</span><div class="grade" style="--g:#15803d"><span class="l">A</span><span class="n">100/100</span><span class="n">after</span></div></div>
+<div class="delta">+78 points · 37 issue(s) fixed</div>
+<h2>Scores by area</h2>
+<table><thead><tr><th>Area</th><th class="num">Before</th><th class="num">After</th></tr></thead><tbody><tr><td>Design (AI-slop tells)</td><td class="num">0</td><td class="num"><b>100</b></td></tr><tr><td>SEO basics</td><td class="num">25</td><td class="num"><b>100</b></td></tr><tr><td>AEO / AI answers</td><td class="num">40</td><td class="num"><b>100</b></td></tr><tr><td>Security headers</td><td class="num">10</td><td class="num"><b>100</b></td></tr><tr><td>Lead capture</td><td class="num">50</td><td class="num"><b>100</b></td></tr></tbody></table>
+<h2>Fixed</h2>
+<ul><li>Typeface is not the default AI pick <code>design.default-font</code></li><li>No purple/violet &quot;AI gradient&quot; <code>design.purple-gradient</code></li><li>Headlines are not gradient-filled text <code>design.gradient-text</code></li><li>No tracked all-caps &quot;eyebrow&quot; labels <code>design.tracked-eyebrow</code></li><li>Lists do not lead with emoji <code>design.emoji-bullets</code></li><li>Headline copy is free of AI buzzwords <code>design.hero-buzzwords</code></li><li>No default glassmorphism blur panels <code>design.glassmorphism</code></li><li>No template placeholder copy left in <code>design.placeholder-copy</code></li><li>Em dashes are not overused in copy <code>design.em-dash-density</code></li><li>Body copy avoids stock AI phrases <code>design.stock-phrases</code></li><li>Accent colour is not the framework default indigo/violet <code>design.default-palette</code></li><li>Title is 30-65 characters <code>seo.title-length</code></li><li>Meta description present <code>seo.meta-description</code></li><li>Meta description is 70-160 characters <code>seo.meta-description-length</code></li><li>Exactly one &lt;h1&gt; <code>seo.single-h1</code></li><li>Canonical URL declared <code>seo.canonical</code></li><li>Open Graph title, description and image <code>seo.open-graph</code></li><li>Twitter/X card meta <code>seo.twitter-card</code></li><li>Valid JSON-LD structured data <code>seo.structured-data</code></li><li>Images have alt text (90%+) <code>seo.img-alt</code></li><li>&lt;html lang&gt; set <code>seo.html-lang</code></li><li>Mobile viewport meta <code>seo.viewport</code></li><li>sitemap.xml reachable <code>seo.sitemap</code></li><li>/llms.txt published <code>aeo.llms-txt</code></li><li>robots.txt present <code>aeo.robots-txt</code></li><li>Answer-ready schema (FAQPage / HowTo / QAPage) <code>aeo.faq-schema</code></li><li>Entity schema (Organization / LocalBusiness / Person) <code>aeo.entity-schema</code></li><li>At least one question-style heading <code>aeo.question-headings</code></li><li>Freshness signal (dateModified or &lt;time&gt;) <code>aeo.freshness</code></li><li>No mixed (http://) content <code>security.mixed-content</code></li><li>No secret-shaped keys in page source <code>security.exposed-keys</code></li><li>Public CDN scripts use Subresource Integrity <code>security.sri</code></li><li>Forms point somewhere real <code>leads.form-action</code></li><li>Form fields are labelled <code>leads.input-labels</code></li><li>Email fields use type=&quot;email&quot; <code>leads.email-type</code></li><li>A clear call-to-action exists <code>leads.primary-cta</code></li><li>Instant channel (phone or WhatsApp) <code>leads.instant-channel</code></li></ul>
+
+<footer><span>Generated with <a href="https://github.com/waseemnasir2k26/site-slopcard">site-slopcard</a> 1.0.0. Passive, read-only checks.</span><span>Only scan sites you own or have permission to audit.</span></footer>
+</main>
+</body>
+</html>

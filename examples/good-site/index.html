@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harbour Lane Plumbing: 60-minute emergency plumbers</title>
+    <meta
+      name="description"
+      content="Licensed plumbers in Harbour Lane. Burst pipes, blocked drains and hot water fixed today, with the price agreed before we start."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="https://harbourlane-plumbing.example/" />
+    <meta property="og:title" content="Harbour Lane Plumbing" />
+    <meta
+      property="og:description"
+      content="Emergency plumbers at your door in 60 minutes, price agreed up front."
+    />
+    <meta
+      property="og:image"
+      content="https://harbourlane-plumbing.example/og.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Plumber",
+            "name": "Harbour Lane Plumbing",
+            "url": "https://harbourlane-plumbing.example/",
+            "telephone": "+1-555-0100",
+            "dateModified": "2026-11-01"
+          },
+          {
+            "@type": "Organization",
+            "name": "Harbour Lane Plumbing",
+            "url": "https://harbourlane-plumbing.example/"
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How fast can you get here?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Within 60 minutes inside Harbour Lane, day or night."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="/">Harbour Lane Plumbing</a>
+      <a href="tel:+15550100">Call 555-0100</a>
+    </header>
+    <main>
+      <section>
+        <h1>Plumber at your door in 60 minutes</h1>
+        <p>
+          We fix burst pipes, blocked drains and broken hot water systems for
+          homes in Harbour Lane, and we agree the price with you before any work
+          starts.
+        </p>
+        <a class="cta" href="#quote">Get my free quote</a>
+      </section>
+      <section>
+        <h2>What we fix</h2>
+        <ul>
+          <li>Burst and leaking pipes</li>
+          <li>Blocked drains and toilets</li>
+          <li>Hot water systems, gas and electric</li>
+        </ul>
+        <img src="van.jpg" alt="Our service van outside a customer's house" />
+        <img src="divider.svg" alt="" />
+      </section>
+      <section>
+        <h2>How much does an emergency call-out cost?</h2>
+        <p>
+          A call-out is a flat fee, shown on the quote. You approve the full
+          price before we pick up a tool.
+        </p>
+        <p>Last updated <time datetime="2026-11-01">1 November 2026</time>.</p>
+      </section>
+      <section id="quote">
+        <h2>Get a quote</h2>
+        <form action="/api/quote" method="post">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+          <label>What needs fixing? <textarea name="job"></textarea></label>
+          <button type="submit">Send my quote request</button>
+        </form>
+        <p>
+          Prefer chat?
+          <a href="https://wa.me/15550100">Message us on WhatsApp</a> or
+          <a href="mailto:jobs@harbourlane-plumbing.example">email the office</a
+          >.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
