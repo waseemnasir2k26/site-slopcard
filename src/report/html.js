@@ -3,6 +3,13 @@ import { GROUPS } from "../rules.js";
 import { GROUP_LABELS } from "../score.js";
 import { scrub } from "../redact.js";
 
+const SHORT = {
+  design: "Design",
+  seo: "SEO",
+  aeo: "AEO",
+  security: "Security",
+  leads: "Leads",
+};
 export const DEFAULT_BRAND = "#0f5c55";
 export const GRADE_COLORS = {
   A: "#15803d",
@@ -79,7 +86,7 @@ export function renderHtml(report) {
   const rows = report.findings
     .map(
       (f) =>
-        `<tr><td>${esc(GROUP_LABELS[f.group] || f.group)}</td><td class="sev ${esc(f.severity)}">${esc(f.severity)}</td><td>${esc(f.title)}<br><code>${esc(f.id)}</code></td><td>${esc(f.evidence)}</td></tr>`,
+        `<tr><td>${esc(SHORT[f.group] || f.group)}</td><td class="sev ${esc(f.severity)}">${esc(f.severity)}</td><td>${esc(f.title)}<br><code>${esc(f.id)}</code></td><td>${esc(f.evidence)}</td></tr>`,
     )
     .join("\n");
   const client = report.client

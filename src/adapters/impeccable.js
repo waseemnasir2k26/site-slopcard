@@ -3,6 +3,14 @@
 // `npx --no-install` means we never download it for you: install it yourself to enable.
 import { runCommand, extractJson } from "./run.js";
 import { trunc } from "../checks/util.js";
+import { existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+
+/** npm ships npx-cli.js next to node on Windows installs. */
+export function findNpxCli(execPath = process.execPath, exists = existsSync) {
+  const p = join(dirname(execPath), "node_modules", "npm", "bin", "npx-cli.js");
+  return exists(p) ? p : null;
+}
 
 export const IMPECCABLE_SOURCE =
   "pbakaus/impeccable (Apache-2.0), called via npx, not vendored";
@@ -65,7 +73,12 @@ export function mapImpeccable(json) {
 
 export async function runImpeccable(
   url,
-  { runner = runCommand, timeoutMs = 90000, platform = process.platform } = {},
+  {
+    runner = runCommand,
+    timeoutMs = 90000,
+    platform = process.platform,
+    npxCli = findNpxCli(),
+  } = {},
 ) {
   if (!SAFE_URL.test(url))
     return {
@@ -73,12 +86,17 @@ export async function runImpeccable(
       note: "design: partial (impeccable skipped: URL has characters we will not pass to a shell)",
       findings: [],
     };
-  const isWin = platform === "win32";
-  const res = await runner(
-    isWin ? "npx.cmd" : "npx",
-    ["--no-install", "impeccable", "detect", url, "--json"],
-    { timeoutMs, shell: isWin },
-  );
+  const args = ["--no-install", "impeccable", "detect", url, "--json"];
+  let res;
+  if (platform !== "win32") {
+    res = await runner("npx", args, { timeoutMs });
+  } else if (npxCli) {
+    // Windows: run npm's npx-cli.js with node directly, so no shell is involved.
+    res = await runner(process.execPath, [npxCli, ...args], { timeoutMs });
+  } else {
+    // Last resort: the npx.cmd shim needs a shell; the URL was validated above.
+    res = await runner("npx.cmd", args, { timeoutMs, shell: true });
+  }
   if (res.error === "timeout")
     return {
       status: "degraded",

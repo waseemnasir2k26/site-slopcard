@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mapImpeccable, runImpeccable } from "../src/adapters/impeccable.js";
+import { mapImpeccable, runImpeccable, findNpxCli } from "../src/adapters/impeccable.js";
 import { mapHallmark, runHallmark } from "../src/adapters/hallmark.js";
 import { extractJson, runCommand } from "../src/adapters/run.js";
 import { score } from "../src/score.js";
@@ -127,7 +127,22 @@ test("impeccable: URLs with shell metacharacters are never passed to a shell", a
   assert.equal(r.status, "degraded");
 });
 
-test("impeccable: Windows uses npx.cmd", async () => {
+test("impeccable: Windows runs npx-cli.js with node (no shell)", async () => {
+  let seen;
+  await runImpeccable("https://site.test/", {
+    runner: async (c, a, o) => {
+      seen = { c, a, o };
+      return { code: 0, stdout: "[]" };
+    },
+    platform: "win32",
+    npxCli: "C:/node/node_modules/npm/bin/npx-cli.js",
+  });
+  assert.equal(seen.c, process.execPath);
+  assert.equal(seen.a[0], "C:/node/node_modules/npm/bin/npx-cli.js");
+  assert.equal(seen.o.shell, undefined);
+});
+
+test("impeccable: Windows without npx-cli.js falls back to the npx.cmd shim", async () => {
   let cmd;
   await runImpeccable("https://site.test/", {
     runner: async (c) => {
@@ -135,8 +150,20 @@ test("impeccable: Windows uses npx.cmd", async () => {
       return { code: 0, stdout: "[]" };
     },
     platform: "win32",
+    npxCli: null,
   });
   assert.equal(cmd, "npx.cmd");
+});
+
+test("findNpxCli returns null when npm is not next to node", () => {
+  assert.equal(
+    findNpxCli("/x/node", () => false),
+    null,
+  );
+  assert.match(
+    findNpxCli("/x/node", () => true),
+    /npx-cli\.js$/,
+  );
 });
 
 test("impeccable findings lower the design score", () => {

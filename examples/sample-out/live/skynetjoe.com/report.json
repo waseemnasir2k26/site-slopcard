@@ -1,0 +1,726 @@
+{
+  "tool": {
+    "name": "site-slopcard",
+    "version": "1.0.0",
+    "url": "https://github.com/waseemnasir2k26/site-slopcard",
+    "userAgent": "site-slopcard/1.0 (+https://github.com/waseemnasir2k26/site-slopcard)"
+  },
+  "target": "https://skynetjoe.com/",
+  "mode": "url",
+  "generatedAt": "2026-11-05T15:56:12.271Z",
+  "client": null,
+  "brandColor": null,
+  "score": {
+    "overall": 89,
+    "grade": "B",
+    "groups": {
+      "design": {
+        "score": 81,
+        "grade": "B",
+        "passed": 7,
+        "failed": 4,
+        "na": 0,
+        "weight": 30
+      },
+      "seo": {
+        "score": 100,
+        "grade": "A",
+        "passed": 14,
+        "failed": 0,
+        "na": 0,
+        "weight": 20
+      },
+      "aeo": {
+        "score": 90,
+        "grade": "A",
+        "passed": 6,
+        "failed": 2,
+        "na": 0,
+        "weight": 20
+      },
+      "security": {
+        "score": 100,
+        "grade": "A",
+        "passed": 11,
+        "failed": 0,
+        "na": 0,
+        "weight": 15
+      },
+      "leads": {
+        "score": 75,
+        "grade": "C",
+        "passed": 3,
+        "failed": 1,
+        "na": 5,
+        "weight": 15
+      }
+    }
+  },
+  "topFixes": [
+    {
+      "id": "design.gradient-text",
+      "group": "design",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Headlines are not gradient-filled text",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses background-clip: text",
+      "fix": "Set headline text in one solid colour; let weight, size and spacing carry emphasis."
+    },
+    {
+      "id": "design.em-dash-density",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "Em dashes are not overused in copy",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "21 em dashes in 941 words",
+      "fix": "Rewrite most em dashes as full stops or commas; heavy em-dash use reads as machine-written."
+    },
+    {
+      "id": "design.glassmorphism",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No default glassmorphism blur panels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses backdrop-filter: blur",
+      "fix": "Use solid surfaces with a clear border instead of frosted blur cards."
+    },
+    {
+      "id": "design.tracked-eyebrow",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No tracked all-caps \"eyebrow\" labels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "uppercase + letter-spacing 0.16em",
+      "fix": "Drop the small uppercase eyebrow above each heading, or keep one, at most, with normal letter spacing."
+    },
+    {
+      "id": "leads.form-present",
+      "group": "leads",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Lead form on the page",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "fail",
+      "evidence": "No <form> on the page",
+      "fix": "Add a short lead form (name, email or phone, one question) where the main CTA lands."
+    }
+  ],
+  "findings": [
+    {
+      "id": "design.gradient-text",
+      "group": "design",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Headlines are not gradient-filled text",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses background-clip: text",
+      "fix": "Set headline text in one solid colour; let weight, size and spacing carry emphasis."
+    },
+    {
+      "id": "design.tracked-eyebrow",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No tracked all-caps \"eyebrow\" labels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "uppercase + letter-spacing 0.16em",
+      "fix": "Drop the small uppercase eyebrow above each heading, or keep one, at most, with normal letter spacing."
+    },
+    {
+      "id": "design.glassmorphism",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No default glassmorphism blur panels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses backdrop-filter: blur",
+      "fix": "Use solid surfaces with a clear border instead of frosted blur cards."
+    },
+    {
+      "id": "design.em-dash-density",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "Em dashes are not overused in copy",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "21 em dashes in 941 words",
+      "fix": "Rewrite most em dashes as full stops or commas; heavy em-dash use reads as machine-written."
+    },
+    {
+      "id": "aeo.question-headings",
+      "group": "aeo",
+      "severity": "low",
+      "effort": 1,
+      "title": "At least one question-style heading",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "fail",
+      "evidence": "No H2/H3 phrased as a question",
+      "fix": "Phrase one or two H2/H3s as the questions buyers actually ask (\"How much does X cost?\")."
+    },
+    {
+      "id": "aeo.freshness",
+      "group": "aeo",
+      "severity": "low",
+      "effort": 1,
+      "title": "Freshness signal (dateModified or <time>)",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "fail",
+      "evidence": "No dateModified, <time datetime> or article:modified_time",
+      "fix": "Expose a last-updated date: dateModified in JSON-LD or a visible <time datetime>."
+    },
+    {
+      "id": "leads.form-present",
+      "group": "leads",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Lead form on the page",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "fail",
+      "evidence": "No <form> on the page",
+      "fix": "Add a short lead form (name, email or phone, one question) where the main CTA lands."
+    }
+  ],
+  "results": [
+    {
+      "id": "design.default-font",
+      "group": "design",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Typeface is not the default AI pick",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.purple-gradient",
+      "group": "design",
+      "severity": "high",
+      "effort": 2,
+      "title": "No purple/violet \"AI gradient\"",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.gradient-text",
+      "group": "design",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Headlines are not gradient-filled text",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses background-clip: text",
+      "fix": "Set headline text in one solid colour; let weight, size and spacing carry emphasis."
+    },
+    {
+      "id": "design.tracked-eyebrow",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No tracked all-caps \"eyebrow\" labels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "uppercase + letter-spacing 0.16em",
+      "fix": "Drop the small uppercase eyebrow above each heading, or keep one, at most, with normal letter spacing."
+    },
+    {
+      "id": "design.emoji-bullets",
+      "group": "design",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Lists do not lead with emoji",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.hero-buzzwords",
+      "group": "design",
+      "severity": "high",
+      "effort": 1,
+      "title": "Headline copy is free of AI buzzwords",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.glassmorphism",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "No default glassmorphism blur panels",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "CSS uses backdrop-filter: blur",
+      "fix": "Use solid surfaces with a clear border instead of frosted blur cards."
+    },
+    {
+      "id": "design.placeholder-copy",
+      "group": "design",
+      "severity": "high",
+      "effort": 1,
+      "title": "No template placeholder copy left in",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.em-dash-density",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "Em dashes are not overused in copy",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "fail",
+      "evidence": "21 em dashes in 941 words",
+      "fix": "Rewrite most em dashes as full stops or commas; heavy em-dash use reads as machine-written."
+    },
+    {
+      "id": "design.stock-phrases",
+      "group": "design",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Body copy avoids stock AI phrases",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "design.default-palette",
+      "group": "design",
+      "severity": "low",
+      "effort": 1,
+      "title": "Accent colour is not the framework default indigo/violet",
+      "source": "site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)",
+      "status": "pass"
+    },
+    {
+      "id": "seo.title-present",
+      "group": "seo",
+      "severity": "high",
+      "effort": 1,
+      "title": "Page has a <title>",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.title-length",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Title is 30-65 characters",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.meta-description",
+      "group": "seo",
+      "severity": "high",
+      "effort": 1,
+      "title": "Meta description present",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.meta-description-length",
+      "group": "seo",
+      "severity": "low",
+      "effort": 1,
+      "title": "Meta description is 70-160 characters",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.single-h1",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Exactly one <h1>",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.canonical",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Canonical URL declared",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.open-graph",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Open Graph title, description and image",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.twitter-card",
+      "group": "seo",
+      "severity": "low",
+      "effort": 1,
+      "title": "Twitter/X card meta",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.structured-data",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Valid JSON-LD structured data",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.img-alt",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Images have alt text (90%+)",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.html-lang",
+      "group": "seo",
+      "severity": "low",
+      "effort": 1,
+      "title": "<html lang> set",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.viewport",
+      "group": "seo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Mobile viewport meta",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.indexable",
+      "group": "seo",
+      "severity": "high",
+      "effort": 1,
+      "title": "Page is not set to noindex",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "seo.sitemap",
+      "group": "seo",
+      "severity": "low",
+      "effort": 1,
+      "title": "sitemap.xml reachable",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.llms-txt",
+      "group": "aeo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "/llms.txt published",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.robots-txt",
+      "group": "aeo",
+      "severity": "low",
+      "effort": 1,
+      "title": "robots.txt present",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.ai-bots-allowed",
+      "group": "aeo",
+      "severity": "high",
+      "effort": 1,
+      "title": "AI crawlers are not blocked",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.faq-schema",
+      "group": "aeo",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Answer-ready schema (FAQPage / HowTo / QAPage)",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.entity-schema",
+      "group": "aeo",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Entity schema (Organization / LocalBusiness / Person)",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.answer-first",
+      "group": "aeo",
+      "severity": "medium",
+      "effort": 2,
+      "title": "First paragraph answers the \"what is this\" question",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "aeo.question-headings",
+      "group": "aeo",
+      "severity": "low",
+      "effort": 1,
+      "title": "At least one question-style heading",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "fail",
+      "evidence": "No H2/H3 phrased as a question",
+      "fix": "Phrase one or two H2/H3s as the questions buyers actually ask (\"How much does X cost?\")."
+    },
+    {
+      "id": "aeo.freshness",
+      "group": "aeo",
+      "severity": "low",
+      "effort": 1,
+      "title": "Freshness signal (dateModified or <time>)",
+      "source": "AgriciDaniel/claude-seo (MIT) seo-agentic checklist, reimplemented",
+      "status": "fail",
+      "evidence": "No dateModified, <time datetime> or article:modified_time",
+      "fix": "Expose a last-updated date: dateModified in JSON-LD or a visible <time datetime>."
+    },
+    {
+      "id": "security.https",
+      "group": "security",
+      "severity": "high",
+      "effort": 2,
+      "title": "Served over HTTPS",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.hsts",
+      "group": "security",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Strict-Transport-Security (6+ months)",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.csp",
+      "group": "security",
+      "severity": "medium",
+      "effort": 3,
+      "title": "Content-Security-Policy set",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.nosniff",
+      "group": "security",
+      "severity": "low",
+      "effort": 1,
+      "title": "X-Content-Type-Options: nosniff",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.referrer-policy",
+      "group": "security",
+      "severity": "low",
+      "effort": 1,
+      "title": "Referrer-Policy set",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.frame-protection",
+      "group": "security",
+      "severity": "low",
+      "effort": 1,
+      "title": "Clickjacking protection",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.version-leak",
+      "group": "security",
+      "severity": "low",
+      "effort": 1,
+      "title": "Server software version not advertised",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.mixed-content",
+      "group": "security",
+      "severity": "medium",
+      "effort": 1,
+      "title": "No mixed (http://) content",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.exposed-keys",
+      "group": "security",
+      "severity": "high",
+      "effort": 2,
+      "title": "No secret-shaped keys in page source",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.third-party-scripts",
+      "group": "security",
+      "severity": "low",
+      "effort": 2,
+      "title": "Third-party script hosts kept to 8 or fewer",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "security.sri",
+      "group": "security",
+      "severity": "low",
+      "effort": 1,
+      "title": "Public CDN scripts use Subresource Integrity",
+      "source": "cloudflare/security-audit-skill (MIT) CLIENT-SIDE checklist, reimplemented",
+      "status": "pass"
+    },
+    {
+      "id": "leads.contact-path",
+      "group": "leads",
+      "severity": "high",
+      "effort": 1,
+      "title": "Visitors have a way to contact you",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "pass"
+    },
+    {
+      "id": "leads.form-present",
+      "group": "leads",
+      "severity": "medium",
+      "effort": 2,
+      "title": "Lead form on the page",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "fail",
+      "evidence": "No <form> on the page",
+      "fix": "Add a short lead form (name, email or phone, one question) where the main CTA lands."
+    },
+    {
+      "id": "leads.form-action",
+      "group": "leads",
+      "severity": "high",
+      "effort": 1,
+      "title": "Forms point somewhere real",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "na"
+    },
+    {
+      "id": "leads.form-https",
+      "group": "leads",
+      "severity": "high",
+      "effort": 1,
+      "title": "Forms submit over HTTPS",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "na"
+    },
+    {
+      "id": "leads.form-endpoint",
+      "group": "leads",
+      "severity": "high",
+      "effort": 2,
+      "title": "Form endpoint answers (HEAD/OPTIONS probe)",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "na"
+    },
+    {
+      "id": "leads.input-labels",
+      "group": "leads",
+      "severity": "medium",
+      "effort": 1,
+      "title": "Form fields are labelled",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "na"
+    },
+    {
+      "id": "leads.email-type",
+      "group": "leads",
+      "severity": "low",
+      "effort": 1,
+      "title": "Email fields use type=\"email\"",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "na"
+    },
+    {
+      "id": "leads.primary-cta",
+      "group": "leads",
+      "severity": "medium",
+      "effort": 1,
+      "title": "A clear call-to-action exists",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "pass"
+    },
+    {
+      "id": "leads.instant-channel",
+      "group": "leads",
+      "severity": "low",
+      "effort": 1,
+      "title": "Instant channel (phone or WhatsApp)",
+      "source": "waseemnasir2k26/lead-leak-audit (MIT) form discovery, reimplemented (detection only)",
+      "status": "pass"
+    }
+  ],
+  "adapters": {
+    "impeccable": "degraded"
+  },
+  "notes": [
+    "design: partial (impeccable not available or produced no JSON, exit 1). Install it with npm i -g impeccable to add its 62 rules."
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/robots.txt",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/llms.txt",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/sitemap.xml",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/_next/static/css/e8d2f6977a2f1e27.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "url": "https://skynetjoe.com/_next/static/css/22d4b58f404eabe9.css",
+      "status": 200
+    }
+  ]
+}

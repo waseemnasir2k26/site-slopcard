@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Report Card: https://skynetjoe.com/</title>
+<style>:root{--brand:#0f5c55;--g:#4d7c0f}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:#f4f2ee;color:#1d1d1b;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.page{max-width:860px;margin:24px auto;background:#fff;border:1px solid #e3dfd7;padding:36px 40px 28px}
+h1,h2,.grade{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif}
+h1{font-size:28px;line-height:1.15;margin:0 0 6px}
+h2{font-size:19px;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--brand)}
+.top{display:flex;gap:28px;align-items:center;justify-content:space-between;border-bottom:1px solid #e3dfd7;padding-bottom:22px}
+.meta{color:#55524c;font-size:13px}
+.meta b{color:#1d1d1b}
+.target{word-break:break-all;font-weight:600;color:var(--brand)}
+.grade{flex:none;width:132px;height:132px;border-radius:50%;border:6px solid var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g)}
+.grade .l{font-size:64px;font-weight:700;line-height:1}
+.grade .n{font-size:15px;color:#55524c;font-family:system-ui,sans-serif}
+.bars{display:grid;grid-template-columns:190px 1fr 46px 34px;gap:8px 12px;align-items:center;margin-top:6px}
+.bar{height:12px;background:#eeebe5;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand)}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.gl{font-weight:700;text-align:center}
+ol.fixes{margin:0;padding-left:22px}
+ol.fixes li{margin:0 0 10px}
+ol.fixes .why{color:#55524c;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;vertical-align:top;padding:6px 8px;border-bottom:1px solid #eeebe5}
+th{color:#55524c;font-weight:600}
+.sev{font-weight:600;white-space:nowrap}
+.sev.high{color:#b91c1c}.sev.medium{color:#b45309}.sev.low{color:#55524c}
+code{font-size:11.5px;color:#55524c}
+.notes{color:#55524c;font-size:12.5px;padding-left:18px}
+footer{margin-top:26px;padding-top:12px;border-top:1px solid #e3dfd7;color:#6b675f;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--brand)}
+@media (max-width:640px){.page{margin:0;padding:22px 16px;border:0}.top{flex-direction:column-reverse;align-items:flex-start}.bars{grid-template-columns:1fr 1fr 40px 28px}}
+@media print{body{background:#fff}.page{margin:0;border:0;max-width:none;padding:0 4px}h2{break-after:avoid}tr,li{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="top">
+<div>
+<h1>Site Report Card</h1>
+<div class="target">https://skynetjoe.com/</div>
+
+<div class="meta">2026-11-05 · 7 issue(s) across 53 checks</div>
+</div>
+<div class="grade" role="img" aria-label="Grade B, 89 out of 100"><span class="l">B</span><span class="n">89/100</span></div>
+</section>
+<h2>Scores by area</h2>
+<div class="bars"><div>Design (AI-slop tells) <span class="meta">(30%)</span></div><div class="bar"><i style="width:81%"></i></div><div class="num">81</div><div class="gl" style="color:#4d7c0f">B</div>
+<div>SEO basics <span class="meta">(20%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>AEO / AI answers <span class="meta">(20%)</span></div><div class="bar"><i style="width:90%"></i></div><div class="num">90</div><div class="gl" style="color:#15803d">A</div>
+<div>Security headers <span class="meta">(15%)</span></div><div class="bar"><i style="width:100%"></i></div><div class="num">100</div><div class="gl" style="color:#15803d">A</div>
+<div>Lead capture <span class="meta">(15%)</span></div><div class="bar"><i style="width:75%"></i></div><div class="num">75</div><div class="gl" style="color:#b45309">C</div></div>
+<h2>Fix these first</h2>
+<ol class="fixes"><li><b>Set headline text in one solid colour; let weight, size and spacing carry emphasis.</b><div class="why">Headlines are not gradient-filled text · Design (AI-slop tells) · medium. Found: CSS uses background-clip: text</div></li><li><b>Rewrite most em dashes as full stops or commas; heavy em-dash use reads as machine-written.</b><div class="why">Em dashes are not overused in copy · Design (AI-slop tells) · low. Found: 21 em dashes in 941 words</div></li><li><b>Use solid surfaces with a clear border instead of frosted blur cards.</b><div class="why">No default glassmorphism blur panels · Design (AI-slop tells) · low. Found: CSS uses backdrop-filter: blur</div></li><li><b>Drop the small uppercase eyebrow above each heading, or keep one, at most, with normal letter spacing.</b><div class="why">No tracked all-caps &quot;eyebrow&quot; labels · Design (AI-slop tells) · low. Found: uppercase + letter-spacing 0.16em</div></li><li><b>Add a short lead form (name, email or phone, one question) where the main CTA lands.</b><div class="why">Lead form on the page · Lead capture · medium. Found: No &lt;form&gt; on the page</div></li></ol>
+<h2>Every finding</h2>
+<table><thead><tr><th>Area</th><th>Severity</th><th>Check</th><th>Evidence</th></tr></thead><tbody><tr><td>Design</td><td class="sev medium">medium</td><td>Headlines are not gradient-filled text<br><code>design.gradient-text</code></td><td>CSS uses background-clip: text</td></tr>
+<tr><td>Design</td><td class="sev low">low</td><td>No tracked all-caps &quot;eyebrow&quot; labels<br><code>design.tracked-eyebrow</code></td><td>uppercase + letter-spacing 0.16em</td></tr>
+<tr><td>Design</td><td class="sev low">low</td><td>No default glassmorphism blur panels<br><code>design.glassmorphism</code></td><td>CSS uses backdrop-filter: blur</td></tr>
+<tr><td>Design</td><td class="sev low">low</td><td>Em dashes are not overused in copy<br><code>design.em-dash-density</code></td><td>21 em dashes in 941 words</td></tr>
+<tr><td>AEO</td><td class="sev low">low</td><td>At least one question-style heading<br><code>aeo.question-headings</code></td><td>No H2/H3 phrased as a question</td></tr>
+<tr><td>AEO</td><td class="sev low">low</td><td>Freshness signal (dateModified or &lt;time&gt;)<br><code>aeo.freshness</code></td><td>No dateModified, &lt;time datetime&gt; or article:modified_time</td></tr>
+<tr><td>Leads</td><td class="sev medium">medium</td><td>Lead form on the page<br><code>leads.form-present</code></td><td>No &lt;form&gt; on the page</td></tr></tbody></table>
+<h2>Notes</h2><ul class="notes"><li>design: partial (impeccable not available or produced no JSON, exit 1). Install it with npm i -g impeccable to add its 62 rules.</li></ul>
+<footer><span>Generated with <a href="https://github.com/waseemnasir2k26/site-slopcard">site-slopcard</a> 1.0.0. Passive, read-only checks.</span><span>Only scan sites you own or have permission to audit.</span></footer>
+</main>
+</body>
+</html>
