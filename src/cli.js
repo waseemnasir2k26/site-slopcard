@@ -23,7 +23,9 @@ Usage
 Options
   --out <dir>            where report.html / report.md / report.json go (default ./slopcard-out)
   --json                 print the JSON report to stdout instead of the summary
-  --no-impeccable        skip the optional impeccable design detector
+  --with-impeccable      also run the impeccable detector (opt-in). It launches its own
+                         browser OUTSIDE our 1 req/s, same-origin and robots.txt limits
+  --allow-private        allow scanning private/loopback/link-local addresses
   --hallmark <dir>       also run hallmark's sloplint from your local checkout
   --client "Name"        white-label: "Prepared for Name"
   --brand-color #hex     white-label accent colour
@@ -31,12 +33,13 @@ Options
   -h, --help             show this help
   -v, --version          print the version
 
-Passive and read-only: GET/HEAD only, same-origin, robots.txt respected, 1 request per second.
+Passive and read-only: GET/HEAD only, same-origin, robots.txt respected, 1 request per second
+(--with-impeccable is the exception: that tool runs its own browser).
 Only scan sites you own or have permission to audit.
 `;
 
 export function parseArgs(argv) {
-  const o = { positional: [], impeccable: true, out: "slopcard-out" };
+  const o = { positional: [], impeccable: false, out: "slopcard-out" };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const val = () => {
@@ -46,7 +49,8 @@ export function parseArgs(argv) {
     };
     if (a === "--out") o.out = val();
     else if (a === "--json") o.json = true;
-    else if (a === "--no-impeccable") o.impeccable = false;
+    else if (a === "--with-impeccable") o.impeccable = true;
+    else if (a === "--allow-private") o.allowPrivate = true;
     else if (a === "--hallmark") o.hallmark = val();
     else if (a === "--client") o.client = val();
     else if (a === "--brand-color") o.brandColor = val();
@@ -108,7 +112,9 @@ export async function main(
       JSON.parse(await readFile(a, "utf8")),
     );
     const out = resolve(o.out);
-    await mkdir(out, { recursive: true });
+    await mkdir(out, { recursive: true }).catch((e) => {
+      if (e.code !== "EEXIST") throw e;
+    });
     await writeFile(join(out, "compare.html"), renderCompareHtml(c));
     await writeFile(join(out, "compare.md"), renderCompareMarkdown(c));
     io.stdout.write(`${headline(c)}\nwrote ${join(out, "compare.html")}\n`);
@@ -123,13 +129,16 @@ export async function main(
     url: o.positional[0],
     file: o.file,
     impeccable: o.impeccable,
+    allowPrivate: o.allowPrivate,
     hallmark: o.hallmark,
     client: o.client,
     brandColor: o.brandColor,
     ...deps,
   });
   const out = resolve(o.out);
-  await mkdir(out, { recursive: true });
+  await mkdir(out, { recursive: true }).catch((e) => {
+    if (e.code !== "EEXIST") throw e;
+  });
   await writeFile(join(out, "report.html"), renderHtml(report));
   await writeFile(join(out, "report.md"), renderMarkdown(report));
   await writeFile(join(out, "report.json"), renderJson(report));

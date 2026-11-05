@@ -1,6 +1,6 @@
 // SEO basics. Checklist items reimplemented in our own code from the ideas in
 // AgriciDaniel/claude-seo (MIT) seo-audit skill. No code copied.
-import { PASS, NA, fail, trunc } from "./util.js";
+import { PASS, NA, fail, warn, trunc } from "./util.js";
 
 const SRC = "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented";
 
@@ -67,7 +67,9 @@ export const seoRules = [
     check: (ctx) =>
       ctx.doc.h1.length === 1
         ? PASS
-        : fail(`${ctx.doc.h1.length} <h1> elements`),
+        : ctx.doc.h1.length > 1
+          ? warn(`${ctx.doc.h1.length} <h1> elements`)
+          : fail("No <h1> element"),
   },
   {
     id: "seo.canonical",

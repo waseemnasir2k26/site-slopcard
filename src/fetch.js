@@ -7,6 +7,35 @@ export const USER_AGENT = `site-slopcard/1.0 (+${REPO_URL})`;
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 const MAX_BODY = 3 * 1024 * 1024;
 
+/** Read a response body, stopping once maxBytes have arrived (never buffers more). */
+export async function readCapped(res, maxBytes = MAX_BODY) {
+  if (res.body && typeof res.body.getReader === "function") {
+    const reader = res.body.getReader();
+    const chunks = [];
+    let total = 0;
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        total += value.byteLength;
+        if (total >= maxBytes) {
+          chunks.push(value.subarray(0, value.byteLength - (total - maxBytes)));
+          break;
+        }
+        chunks.push(value);
+      }
+    } finally {
+      reader.cancel().catch(() => {});
+    }
+    return Buffer.concat(chunks.map((c) => Buffer.from(c))).toString("utf8");
+  }
+  if (typeof res.text === "function") {
+    const t = await res.text();
+    return t.length > maxBytes ? t.slice(0, maxBytes) : t;
+  }
+  return "";
+}
+
 export class RefusedError extends Error {
   constructor(msg) {
     super(msg);
@@ -61,10 +90,7 @@ export function createFetcher({
           headers[k.toLowerCase()] = v;
         });
       let body = "";
-      if (m === "GET" && typeof res.text === "function") {
-        body = await res.text();
-        if (body.length > MAX_BODY) body = body.slice(0, MAX_BODY);
-      }
+      if (m === "GET") body = await readCapped(res, MAX_BODY);
       log.push({ method: m, url: u.href, status: res.status });
       return { status: res.status, headers, body, url: u.href };
     } catch (err) {
@@ -103,7 +129,8 @@ export function isSameSiteHop(from, to) {
   const a = new URL(from),
     b = new URL(to);
   const strip = (h) => h.replace(/^www\./, "");
-  if (strip(a.hostname) !== strip(b.hostname)) return false;
+  // compare host (hostname + port): a different port is a different service
+  if (strip(a.host) !== strip(b.host)) return false;
   return (
     a.protocol === b.protocol ||
     (a.protocol === "http:" && b.protocol === "https:")

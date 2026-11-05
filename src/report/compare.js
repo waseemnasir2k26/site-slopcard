@@ -4,6 +4,11 @@ import { GROUP_LABELS } from "../score.js";
 import { scrub } from "../redact.js";
 import { esc, safeColor, BASE_CSS, GRADE_COLORS, footer } from "./html.js";
 
+const num = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
+const grade = (g) =>
+  Object.prototype.hasOwnProperty.call(GRADE_COLORS, g) ? g : "n/a";
+const cell = (v) => (v == null ? "n/a" : String(num(v)));
+
 export function compareReports(before, after) {
   const ids = (r) => new Set(r.findings.map((f) => f.id));
   const b = ids(before),
@@ -14,22 +19,22 @@ export function compareReports(before, after) {
         ? after.target
         : `${before.target} -> ${after.target}`,
     before: {
-      grade: before.score.grade,
-      overall: before.score.overall,
+      grade: grade(before.score.grade),
+      overall: num(before.score.overall),
       generatedAt: before.generatedAt,
     },
     after: {
-      grade: after.score.grade,
-      overall: after.score.overall,
+      grade: grade(after.score.grade),
+      overall: num(after.score.overall),
       generatedAt: after.generatedAt,
     },
-    delta: after.score.overall - before.score.overall,
+    delta: num(after.score.overall) - num(before.score.overall),
     groups: Object.fromEntries(
       GROUPS.map((g) => [
         g,
         {
-          before: before.score.groups[g].score,
-          after: after.score.groups[g].score,
+          before: before.score.groups[g].score ?? null,
+          after: after.score.groups[g].score ?? null,
         },
       ]),
     ),
@@ -59,7 +64,7 @@ export function renderCompareMarkdown(c) {
   ];
   for (const g of GROUPS)
     L.push(
-      `| ${GROUP_LABELS[g]} | ${c.groups[g].before ?? "n/a"} | ${c.groups[g].after ?? "n/a"} |`,
+      `| ${GROUP_LABELS[g]} | ${cell(c.groups[g].before)} | ${cell(c.groups[g].after)} |`,
     );
   L.push("", `## Fixed (${c.fixed.length})`, "");
   for (const f of c.fixed) L.push(`- \`${f.id}\` ${f.title}`);
@@ -74,10 +79,10 @@ export function renderCompareMarkdown(c) {
 export function renderCompareHtml(c) {
   const brand = safeColor(c.brandColor);
   const card = (x, label) =>
-    `<div class="grade" style="--g:${GRADE_COLORS[x.grade]}"><span class="l">${esc(x.grade)}</span><span class="n">${x.overall}/100</span><span class="n">${label}</span></div>`;
+    `<div class="grade" style="--g:${GRADE_COLORS[grade(x.grade)]}"><span class="l">${esc(x.grade)}</span><span class="n">${esc(num(x.overall))}/100</span><span class="n">${label}</span></div>`;
   const rows = GROUPS.map(
     (g) =>
-      `<tr><td>${esc(GROUP_LABELS[g])}</td><td class="num">${c.groups[g].before ?? "n/a"}</td><td class="num"><b>${c.groups[g].after ?? "n/a"}</b></td></tr>`,
+      `<tr><td>${esc(GROUP_LABELS[g])}</td><td class="num">${esc(cell(c.groups[g].before))}</td><td class="num"><b>${esc(cell(c.groups[g].after))}</b></td></tr>`,
   ).join("");
   const html = `<!doctype html>
 <html lang="en">
@@ -93,7 +98,7 @@ export function renderCompareHtml(c) {
 <div class="target">${esc(c.target)}</div>
 ${c.client ? `<div class="meta">Prepared for <b>${esc(c.client)}</b></div>` : ""}
 <div class="vs">${card(c.before, "before")}<span class="arrow" aria-hidden="true">&rarr;</span>${card(c.after, "after")}</div>
-<div class="delta">${c.delta >= 0 ? "+" : ""}${c.delta} points · ${c.fixed.length} issue(s) fixed</div>
+<div class="delta">${c.delta >= 0 ? "+" : ""}${esc(num(c.delta))} points · ${c.fixed.length} issue(s) fixed</div>
 <h2>Scores by area</h2>
 <table><thead><tr><th>Area</th><th class="num">Before</th><th class="num">After</th></tr></thead><tbody>${rows}</tbody></table>
 <h2>Fixed</h2>

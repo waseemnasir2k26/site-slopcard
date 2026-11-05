@@ -1,6 +1,6 @@
 {
   "name": "site-slopcard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Give it a URL, get a one-page client-ready Site Report Card (A-F): AI-slop design tells, SEO/AEO basics, security headers and lead-form health.",
   "type": "module",
   "bin": {

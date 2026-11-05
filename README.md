@@ -89,13 +89,15 @@ The exit code is 0 unless `--fail-under N` is set and the score is below N (exit
 ## All options
 
 ```
-site-slopcard <url> [--out dir] [--json] [--no-impeccable] [--hallmark <dir>]
+site-slopcard <url> [--out dir] [--json] [--with-impeccable] [--hallmark <dir>]
+                    [--allow-private]
                     [--client "Name"] [--brand-color #hex] [--fail-under N]
 site-slopcard --file <index.html> [same options]
 site-slopcard compare <before.json> <after.json> [--out dir]
 ```
 
-- **impeccable** runs automatically when it is installed (`npm i -g impeccable`). We call `npx --no-install`, so nothing is downloaded behind your back. Without it the report notes "design: partial" and still scores. Use `--no-impeccable` to skip it.
+- **impeccable** is opt-in: add `--with-impeccable` (and `npm i -g impeccable`). We call `npx --no-install`, so nothing is downloaded behind your back. **When enabled, impeccable launches its own browser and makes its own requests, outside site-slopcard's 1 req/s, same-origin and robots.txt limits.** Without the flag the report notes "design: partial" and still scores.
+- **--allow-private**: by default, private, loopback, link-local and cloud-metadata addresses (127/8, 10/8, 172.16/12, 192.168/16, 169.254/16, ::1, fc00::/7) are refused, including hostnames that resolve to them. Pass this flag only for an internal site you own.
 - **hallmark**: pass `--hallmark path/to/hallmark-checkout` to also run its sloplint on a snapshot of the page.
 - **Offline mode** (`--file`) also reads `robots.txt`, `llms.txt`, `sitemap.xml`, `headers.json` and local stylesheets sitting next to the HTML file.
 
@@ -128,16 +130,18 @@ site-slopcard's angle is combining design, SEO/AEO, security and lead health int
 
 - Passive and read-only: GET and HEAD only. Forms are never submitted; form endpoints get at most one HEAD request, and only on the same origin.
 - One page per run, plus `robots.txt`, `llms.txt`, the sitemap and up to three same-origin stylesheets. No crawling.
-- robots.txt is respected. If it disallows the page for `site-slopcard`, we stop.
+- robots.txt is respected for every path we fetch: the page and each redirect hop (we stop if disallowed), and `llms.txt`, the sitemap, stylesheets and form HEADs (skipped with a note if disallowed). The `robots.txt` request itself is the only exemption.
+- These limits cover site-slopcard's own requests. The opt-in `--with-impeccable` adapter runs a separate browser that is **not** bound by them.
+- Responses are read with a 3 MB streaming cap. Private/loopback/metadata addresses are refused unless `--allow-private`.
 - At most 1 request per second, a 10 second timeout, and an honest User-Agent: `site-slopcard/1.0 (+https://github.com/waseemnasir2k26/site-slopcard)`.
-- Off-site redirects are refused. Only same-site hops (www and http to https) are followed.
+- Off-site redirects are refused. Only same-site hops (www and http to https, same host and port) are followed.
 - Anything shaped like a secret key is reduced to 4 characters plus its length in every output.
 - No telemetry. Reports stay on your machine.
 
 ## Development
 
 ```bash
-npm test          # 179 offline tests, node:test, no network
+npm test          # 192 offline tests, node:test, no network
 npm run sample    # regenerate examples/sample-out/
 ```
 

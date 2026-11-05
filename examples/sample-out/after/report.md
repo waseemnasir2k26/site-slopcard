@@ -1,6 +1,6 @@
 # Site Report Card: examples/good-site/index.html
 
-**Grade A (100/100)** · generated 2026-11-05 · site-slopcard 1.0.0
+**Grade A (100/100)** · generated 2026-11-05 · site-slopcard 1.0.1
 
 Prepared for: **Harbour Lane Plumbing**
 

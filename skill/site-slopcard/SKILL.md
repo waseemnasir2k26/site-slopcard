@@ -23,7 +23,7 @@ Turn a URL into a one-page report card, then fix what it finds in code the user 
    # offline, against the repo's built HTML:
    npx site-slopcard --file dist/index.html --out slopcard-out
    ```
-   Optional: `--client "Name" --brand-color #hex` for a white-label card; `--hallmark <dir>` if the user has a hallmark checkout. impeccable is used automatically when it is installed.
+   Optional: `--client "Name" --brand-color #hex` for a white-label card; `--hallmark <dir>` if the user has a hallmark checkout. impeccable is opt-in: pass `--with-impeccable` only if the user wants it and understands it runs its own browser outside the rate/robots limits. Private/loopback targets need `--allow-private`.
 2. Read `slopcard-out/report.json`. Start with `topFixes` (already ranked by impact and effort), then `findings`. Each finding has `id`, `group`, `severity`, `evidence`, `fix`, `source`.
 3. Propose a short plan (max 5 items) and wait for a yes before multi-file edits.
 4. Apply fixes in the local repo. Mapping guide:

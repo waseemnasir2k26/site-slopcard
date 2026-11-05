@@ -1,16 +1,16 @@
 # Before / after: examples/bad-site/index.html -> examples/good-site/index.html
 
-**F 22 -> A 100 (+78)**
+**F 23 -> A 100 (+77)**
 
 | Area | Before | After |
 |---|---:|---:|
 | Design (AI-slop tells) | 0 | 100 |
-| SEO basics | 25 | 100 |
+| SEO basics | 29 | 100 |
 | AEO / AI answers | 40 | 100 |
 | Security headers | 10 | 100 |
 | Lead capture | 50 | 100 |
 
-## Fixed (37)
+## Fixed (36)
 
 - `design.default-font` Typeface is not the default AI pick
 - `design.purple-gradient` No purple/violet "AI gradient"
@@ -26,7 +26,6 @@
 - `seo.title-length` Title is 30-65 characters
 - `seo.meta-description` Meta description present
 - `seo.meta-description-length` Meta description is 70-160 characters
-- `seo.single-h1` Exactly one <h1>
 - `seo.canonical` Canonical URL declared
 - `seo.open-graph` Open Graph title, description and image
 - `seo.twitter-card` Twitter/X card meta

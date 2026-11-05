@@ -35,7 +35,7 @@ test("parseArgs reads every flag", () => {
     "--out",
     "o",
     "--json",
-    "--no-impeccable",
+    "--with-impeccable",
     "--hallmark",
     "h",
     "--client",
@@ -48,7 +48,8 @@ test("parseArgs reads every flag", () => {
   assert.deepEqual(o.positional, ["https://x.test"]);
   assert.equal(o.out, "o");
   assert.equal(o.json, true);
-  assert.equal(o.impeccable, false);
+  assert.equal(o.impeccable, true);
+  assert.equal(parseArgs([]).impeccable, false);
   assert.equal(o.hallmark, "h");
   assert.equal(o.client, "Acme Dental");
   assert.equal(o.brandColor, "#123456");

@@ -120,13 +120,17 @@ const STOCK = [
 ];
 const PLACEHOLDER = [
   /lorem ipsum/i,
-  /\byour company\b/i,
-  /\bcompany name\b/i,
   /\[your [a-z ]+\]/i,
   /example@example\.com/i,
   /\bjohn doe\b/i,
-  /\bacme (inc|corp)\b/i,
   /\btestimonial goes here\b/i,
+];
+// Ambiguous phrases ("your company" appears in real marketing copy, e.g. Stripe):
+// only flagged in the title, headings, buttons and link text (headlines/CTAs).
+const PLACEHOLDER_PROMINENT = [
+  /\byour company\b/i,
+  /\bcompany name\b/i,
+  /\bacme (inc|corp)\b/i,
 ];
 const TW_SLOP =
   /\b(?:bg|text|from|via|to|border|ring|shadow)-(?:indigo|violet|purple|fuchsia)-(?:300|400|500|600|700)\b/;
@@ -296,7 +300,20 @@ export const designRules = [
     title: "No template placeholder copy left in",
     fix: 'Replace every placeholder (lorem ipsum, "Your Company", sample names) with real copy.',
     check(ctx) {
-      const hit = PLACEHOLDER.map((re) => ctx.doc.text.match(re)).find(Boolean);
+      let hit = PLACEHOLDER.map((re) => ctx.doc.text.match(re)).find(Boolean);
+      if (!hit) {
+        const prominent = [
+          ctx.doc.title || "",
+          ...ctx.doc.h1,
+          ...ctx.doc.h2,
+          ...ctx.doc.h3,
+          ...ctx.doc.buttons.map((b) => b.text),
+          ...ctx.doc.anchors.map((a) => a.text),
+        ].join(" | ");
+        hit = PLACEHOLDER_PROMINENT.map((re) => prominent.match(re)).find(
+          Boolean,
+        );
+      }
       return hit ? fail(`Found "${hit[0]}"`) : PASS;
     },
   },

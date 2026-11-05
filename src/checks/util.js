@@ -2,6 +2,8 @@
 export const PASS = true;
 export const NA = "na";
 export const fail = (evidence) => ({ evidence: String(evidence) });
+/** Soft finding: reported with its fix, scored at half credit, never a top fix. */
+export const warn = (evidence) => ({ evidence: String(evidence), warn: true });
 
 export const SEVERITY_WEIGHT = { high: 5, medium: 3, low: 1 };
 

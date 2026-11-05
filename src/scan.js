@@ -1,7 +1,8 @@
 // Orchestrates one scan: gather inputs (URL or local file) -> ctx -> rules -> adapters -> report object.
 import { readFile, writeFile, mkdtemp, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { isIP } from "node:net";
+import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
 import { tmpdir } from "node:os";
 import { createFetcher, isSameSiteHop, USER_AGENT, REPO_URL } from "./fetch.js";
 import { parseRobots, isAllowed } from "./robots.js";
@@ -9,10 +10,11 @@ import { buildContext } from "./context.js";
 import { findTags } from "./html.js";
 import { runRules, RULES } from "./rules.js";
 import { score, topFixes } from "./score.js";
+import { assertPublicHost } from "./netguard.js";
 import { runImpeccable } from "./adapters/impeccable.js";
 import { runHallmark } from "./adapters/hallmark.js";
 
-export const VERSION = "1.0.0";
+export const VERSION = "1.0.1";
 const MAX_CSS = 3;
 const MAX_FORM_PROBES = 2;
 
@@ -20,7 +22,12 @@ export function normaliseUrl(input) {
   let s = String(input || "").trim();
   if (!s) throw new Error("No URL given");
   if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(s)) s = "https://" + s;
-  const u = new URL(s);
+  let u;
+  try {
+    u = new URL(s);
+  } catch {
+    throw new Error("Invalid URL");
+  }
   if (!/^https?:$/.test(u.protocol))
     throw new Error(`Only http(s) URLs can be scanned, got ${u.protocol}`);
   u.hash = "";
@@ -51,9 +58,22 @@ export async function gatherUrl(
     minIntervalMs = 1000,
     timeoutMs = 10000,
     probeForms = true,
+    allowPrivate = false,
+    lookup,
   } = {},
 ) {
   let url = normaliseUrl(inputUrl);
+  // Block private/loopback/metadata targets. With an injected fetchImpl (tests, no real
+  // network) and no injected lookup we skip DNS; literal IPs are still checked.
+  const guard = async (u) => {
+    if (allowPrivate) return;
+    if (fetchImpl && !lookup) {
+      const h = new URL(u).hostname;
+      if (!isIP(h.replace(/^\[|\]$/g, ""))) return;
+    }
+    await assertPublicHost(u, lookup);
+  };
+  await guard(url);
   const fetcher = createFetcher({
     origin: url,
     fetchImpl,
@@ -75,6 +95,20 @@ export async function gatherUrl(
     }
   };
   checkRobots(robotsTxt, url);
+  // Optional fetches (llms.txt, sitemap, CSS, form HEADs) honour robots.txt too: skip + note.
+  const robotsBlocks = (target) => {
+    if (robotsTxt == null) return false;
+    const u = new URL(target);
+    return !isAllowed(
+      parseRobots(robotsTxt),
+      "site-slopcard",
+      u.pathname + u.search,
+    );
+  };
+  const skipNote = (target) =>
+    notes.push(
+      `skipped ${new URL(target).pathname} (disallowed by robots.txt)`,
+    );
 
   let page;
   for (let hop = 0; hop < 5; hop++) {
@@ -86,12 +120,12 @@ export async function gatherUrl(
           `Redirects off-site to ${new URL(next).origin}; scan that URL directly if you own it.`,
         );
       const changedOrigin = new URL(next).origin !== new URL(url).origin;
+      if (changedOrigin) await guard(next);
       fetcher.allowOrigin(next);
       url = next;
-      if (changedOrigin) {
-        robotsTxt = await robotsFor(url);
-        checkRobots(robotsTxt, url);
-      }
+      if (changedOrigin) robotsTxt = await robotsFor(url);
+      // every hop target is checked, not just the first URL
+      checkRobots(robotsTxt, url);
       continue;
     }
     break;
@@ -101,17 +135,23 @@ export async function gatherUrl(
   if (page.status >= 300) throw new Error("Too many redirects");
 
   const origin = new URL(url).origin;
-  const llmsTxt = await getText(fetcher, new URL("/llms.txt", origin).href);
+  const llmsUrl = new URL("/llms.txt", origin).href;
+  let llmsTxt = null;
+  if (robotsBlocks(llmsUrl)) skipNote(llmsUrl);
+  else llmsTxt = await getText(fetcher, llmsUrl);
   const robots = robotsTxt ? parseRobots(robotsTxt) : null;
   const sitemapUrl =
-    (robots && robots.sitemaps.find((s) => fetcher.isAllowed(s))) ||
+    (robots &&
+      robots.sitemaps.find((s) => fetcher.isAllowed(s) && !robotsBlocks(s))) ||
     new URL("/sitemap.xml", origin).href;
   let sitemapXml = null;
-  try {
-    const sm = await fetcher.get(sitemapUrl);
-    if (sm.status < 300 && /<(urlset|sitemapindex)\b/i.test(sm.body))
-      sitemapXml = sm.body;
-  } catch {}
+  if (robotsBlocks(sitemapUrl)) skipNote(sitemapUrl);
+  else
+    try {
+      const sm = await fetcher.get(sitemapUrl);
+      if (sm.status < 300 && /<(urlset|sitemapindex)\b/i.test(sm.body))
+        sitemapXml = sm.body;
+    } catch {}
 
   // Same-origin stylesheets only (max 3). Off-origin CSS is skipped, never fetched.
   let css = "";
@@ -128,6 +168,10 @@ export async function gatherUrl(
       continue;
     }
     if (!fetcher.isAllowed(href)) continue;
+    if (robotsBlocks(href)) {
+      skipNote(href);
+      continue;
+    }
     try {
       const r = await fetcher.get(href);
       if (r.status < 300) css += "\n" + r.body;
@@ -150,6 +194,13 @@ export async function gatherUrl(
       }
       if (!fetcher.isAllowed(target)) {
         formProbes.push({ url: target, skipped: "off-origin, not probed" });
+        continue;
+      }
+      if (robotsBlocks(target)) {
+        formProbes.push({
+          url: target,
+          skipped: "disallowed by robots.txt, not probed",
+        });
         continue;
       }
       try {
@@ -204,7 +255,14 @@ export async function gatherFile(filePath) {
     )
       continue;
     const p = resolve(dir, l.href.split(/[?#]/)[0]);
-    if (p.startsWith(dir) && existsSync(p))
+    const rel = relative(dir, p);
+    if (
+      rel &&
+      rel !== ".." &&
+      !rel.startsWith(".." + sep) &&
+      !isAbsolute(rel) &&
+      existsSync(p)
+    )
       css += "\n" + (await readFile(p, "utf8"));
   }
   return {
@@ -228,7 +286,7 @@ export async function gatherFile(filePath) {
 }
 
 /**
- * Full scan. opts: { file, url, impeccable (bool), hallmark (dir), client, brandColor, now, fetchImpl, impeccableRunner, hallmarkRunner, displayTarget }
+ * Full scan. opts: { file, url, impeccable (bool, opt-in, default off), allowPrivate, lookup, hallmark (dir), client, brandColor, now, fetchImpl, impeccableRunner, hallmarkRunner, displayTarget }
  */
 export async function scan(opts = {}) {
   const gathered = opts.file
@@ -239,7 +297,7 @@ export async function scan(opts = {}) {
   const notes = [...gathered.notes];
   const adapters = {};
 
-  if (opts.impeccable !== false && ctx.mode === "url") {
+  if (opts.impeccable === true && ctx.mode === "url") {
     const r = await runImpeccable(ctx.url, { runner: opts.impeccableRunner });
     adapters.impeccable = r.status;
     notes.push(r.note);
@@ -249,7 +307,7 @@ export async function scan(opts = {}) {
     notes.push(
       ctx.mode === "file"
         ? "design: partial (impeccable needs a URL; serve the file and scan http://localhost to add its rules)"
-        : "design: partial (impeccable skipped with --no-impeccable)",
+        : "design: partial (impeccable is opt-in: add --with-impeccable to run it; it makes its own requests outside our rate and robots limits)",
     );
   }
 

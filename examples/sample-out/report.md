@@ -1,11 +1,11 @@
 # Site Report Card: examples/bad-site/index.html
 
-**Grade F (22/100)** · generated 2026-11-05 · site-slopcard 1.0.0
+**Grade F (23/100)** · generated 2026-11-05 · site-slopcard 1.0.1
 
 | Area | Weight | Score | Grade | Passed | Failed | n/a |
 |---|---:|---:|:---:|---:|---:|---:|
 | Design (AI-slop tells) | 30 | 0 | F | 0 | 11 | 0 |
-| SEO basics | 20 | 25 | F | 2 | 12 | 0 |
+| SEO basics | 20 | 29 | F | 2 | 11 | 0 |
 | AEO / AI answers | 20 | 40 | F | 2 | 6 | 0 |
 | Security headers | 15 | 10 | F | 1 | 3 | 7 |
 | Lead capture | 15 | 50 | F | 3 | 5 | 1 |
@@ -61,7 +61,7 @@
   - Fix: Swap the stock indigo/violet accent for your own brand colour.
   - Source: site-slopcard heuristic (tell list informed by Nutlope/hallmark + Leonxlnx/taste-skill, MIT)
 
-### SEO basics (12)
+### SEO basics (11)
 
 - [medium] `seo.title-length` Title is 30-65 characters: Title is 8 chars: "NovaFlow"
   - Fix: Rewrite the title to 30-65 characters so it is not truncated in results.
@@ -71,9 +71,6 @@
   - Source: AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented
 - [low] `seo.meta-description-length` Meta description is 70-160 characters: No meta description to measure
   - Fix: Keep the description between 70 and 160 characters.
-  - Source: AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented
-- [medium] `seo.single-h1` Exactly one <h1>: 2 <h1> elements
-  - Fix: Use one <h1> for the page topic; demote the others to <h2>.
   - Source: AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented
 - [medium] `seo.canonical` Canonical URL declared: No rel=canonical link
   - Fix: Add <link rel="canonical" href="https://your-domain/page"> to stop duplicate-URL dilution.

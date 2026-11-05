@@ -1,7 +1,7 @@
 {
   "tool": {
     "name": "site-slopcard",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "url": "https://github.com/waseemnasir2k26/site-slopcard",
     "userAgent": "site-slopcard/1.0 (+https://github.com/waseemnasir2k26/site-slopcard)"
   },
@@ -11,22 +11,24 @@
   "client": null,
   "brandColor": null,
   "score": {
-    "overall": 22,
+    "overall": 23,
     "grade": "F",
     "groups": {
       "design": {
         "score": 0,
         "grade": "F",
         "passed": 0,
+        "warned": 0,
         "failed": 11,
         "na": 0,
         "weight": 30
       },
       "seo": {
-        "score": 25,
+        "score": 29,
         "grade": "F",
         "passed": 2,
-        "failed": 12,
+        "warned": 1,
+        "failed": 11,
         "na": 0,
         "weight": 20
       },
@@ -34,6 +36,7 @@
         "score": 40,
         "grade": "F",
         "passed": 2,
+        "warned": 0,
         "failed": 6,
         "na": 0,
         "weight": 20
@@ -42,6 +45,7 @@
         "score": 10,
         "grade": "F",
         "passed": 1,
+        "warned": 0,
         "failed": 3,
         "na": 7,
         "weight": 15
@@ -50,6 +54,7 @@
         "score": 50,
         "grade": "F",
         "passed": 3,
+        "warned": 0,
         "failed": 5,
         "na": 1,
         "weight": 15
@@ -267,17 +272,6 @@
       "status": "fail",
       "evidence": "No meta description to measure",
       "fix": "Keep the description between 70 and 160 characters."
-    },
-    {
-      "id": "seo.single-h1",
-      "group": "seo",
-      "severity": "medium",
-      "effort": 1,
-      "title": "Exactly one <h1>",
-      "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
-      "status": "fail",
-      "evidence": "2 <h1> elements",
-      "fix": "Use one <h1> for the page topic; demote the others to <h2>."
     },
     {
       "id": "seo.canonical",
@@ -693,7 +687,7 @@
       "effort": 1,
       "title": "Exactly one <h1>",
       "source": "AgriciDaniel/claude-seo (MIT) seo-audit checklist, reimplemented",
-      "status": "fail",
+      "status": "warn",
       "evidence": "2 <h1> elements",
       "fix": "Use one <h1> for the page topic; demote the others to <h2>."
     },

@@ -1,7 +1,7 @@
 {
   "tool": {
     "name": "site-slopcard",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "url": "https://github.com/waseemnasir2k26/site-slopcard",
     "userAgent": "site-slopcard/1.0 (+https://github.com/waseemnasir2k26/site-slopcard)"
   },
@@ -18,6 +18,7 @@
         "score": 100,
         "grade": "A",
         "passed": 11,
+        "warned": 0,
         "failed": 0,
         "na": 0,
         "weight": 30
@@ -26,6 +27,7 @@
         "score": 100,
         "grade": "A",
         "passed": 14,
+        "warned": 0,
         "failed": 0,
         "na": 0,
         "weight": 20
@@ -34,6 +36,7 @@
         "score": 100,
         "grade": "A",
         "passed": 8,
+        "warned": 0,
         "failed": 0,
         "na": 0,
         "weight": 20
@@ -42,6 +45,7 @@
         "score": 100,
         "grade": "A",
         "passed": 10,
+        "warned": 0,
         "failed": 0,
         "na": 1,
         "weight": 15
@@ -50,6 +54,7 @@
         "score": 100,
         "grade": "A",
         "passed": 8,
+        "warned": 0,
         "failed": 0,
         "na": 1,
         "weight": 15

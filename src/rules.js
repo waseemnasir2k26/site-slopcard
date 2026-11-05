@@ -33,7 +33,7 @@ export function runRule(rule, ctx) {
   if (out === "na") return { ...base, status: "na" };
   return {
     ...base,
-    status: "fail",
+    status: out && out.warn ? "warn" : "fail",
     evidence: out && out.evidence ? out.evidence : "failed",
     fix: rule.fix,
   };

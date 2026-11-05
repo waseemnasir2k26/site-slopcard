@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.1 (2026-11-06)
+
+- impeccable is now OPT-IN (`--with-impeccable`, default off); it runs its own browser outside our rate and robots limits and the docs say so. `--no-impeccable` removed.
+- robots.txt now enforced on every fetched path (redirect hops, llms.txt, sitemap, CSS, form HEADs).
+- Private/loopback/link-local/metadata targets refused (DNS-resolved) unless `--allow-private`.
+- Streaming 3 MB body cap; redirect hop compares host and port.
+- `--file` CSS traversal guard uses path.relative; compare report escapes and validates fields.
+- CLI: "Invalid URL" message, scrubbed stderr, `--out` tolerates an existing directory.
+- Design: "your company"/"company name" placeholders only flagged in title, headings, buttons and links.
+- SEO: duplicate `<h1>` is a warning (half credit) instead of a failure.
+
 ## 1.0.0 (2026-11-05)
 
 - First release.

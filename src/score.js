@@ -41,13 +41,19 @@ export function score(results) {
       0,
     );
     const got = applicable
-      .filter((r) => r.status === "pass")
-      .reduce((s, r) => s + (SEVERITY_WEIGHT[r.severity] || 1), 0);
+      .filter((r) => r.status === "pass" || r.status === "warn")
+      .reduce(
+        (s, r) =>
+          s +
+          (SEVERITY_WEIGHT[r.severity] || 1) * (r.status === "warn" ? 0.5 : 1),
+        0,
+      );
     const gs = total ? Math.round((got / total) * 100) : null;
     groups[g] = {
       score: gs,
       grade: gs == null ? "n/a" : gradeFor(gs),
       passed: applicable.filter((r) => r.status === "pass").length,
+      warned: applicable.filter((r) => r.status === "warn").length,
       failed: applicable.filter((r) => r.status === "fail").length,
       na: rows.length - applicable.length,
       weight: GROUP_WEIGHTS[g],

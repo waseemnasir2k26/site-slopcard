@@ -58,7 +58,7 @@ const CASES = [
     "seo.meta-description-length",
     withHtml("", '<meta name="description" content="Too short">'),
   ],
-  ["seo.single-h1", withHtml("<h1>a</h1><h1>b</h1>")],
+  ["seo.single-h1", withHtml("<p>no heading</p>")],
   ["seo.canonical", withHtml("")],
   ["seo.open-graph", withHtml("", '<meta property="og:title" content="x">')],
   ["seo.twitter-card", withHtml("")],
