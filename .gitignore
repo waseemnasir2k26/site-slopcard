@@ -3,3 +3,4 @@ slopcard-out/
 .impeccable/
 *.log
 .DS_Store
+.critic/
